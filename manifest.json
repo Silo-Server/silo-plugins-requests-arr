@@ -4,9 +4,18 @@
   "checksum": "__CHECKSUM__",
   "silo_api_version": "v1",
   "supported_platforms": [
-    { "os": "linux", "arch": "amd64" },
-    { "os": "linux", "arch": "arm64" },
-    { "os": "darwin", "arch": "arm64" }
+    {
+      "os": "linux",
+      "arch": "amd64"
+    },
+    {
+      "os": "linux",
+      "arch": "arm64"
+    },
+    {
+      "os": "darwin",
+      "arch": "arm64"
+    }
   ],
   "capabilities": [
     {
@@ -22,25 +31,222 @@
           "admin_form": {
             "submit_label": "Save connection",
             "fields": [
-              {"key":"service_kind","label":"Service","control":"ADMIN_FORM_CONTROL_SELECT","required":true,"options":[{"value":"radarr","label":"Radarr (movies)"},{"value":"sonarr","label":"Sonarr (series)"}]},
-              {"key":"root_folder","label":"Root folder","control":"ADMIN_FORM_CONTROL_SELECT","dynamic_options":true},
-              {"key":"quality_profile_id","label":"Quality profile","control":"ADMIN_FORM_CONTROL_SELECT","required":true,"dynamic_options":true},
-              {"key":"tags","label":"Tags","control":"ADMIN_FORM_CONTROL_MULTI_SELECT","dynamic_options":true},
-              {"key":"is_default","label":"Default (HD/1080p)","control":"ADMIN_FORM_CONTROL_SWITCH","exclusive_group_field":"service_kind"},
-              {"key":"is_4k","label":"4K instance","control":"ADMIN_FORM_CONTROL_SWITCH"},
-              {"key":"is_default_4k","label":"Default 4K (2160p)","control":"ADMIN_FORM_CONTROL_SWITCH","show_when":[{"field":"is_4k","equals":["true"]}],"exclusive_group_field":"service_kind"},
-              {"key":"search_on_add","label":"Search on add","control":"ADMIN_FORM_CONTROL_SWITCH","default_value":true},
-              {"key":"minimum_availability","label":"Minimum availability","control":"ADMIN_FORM_CONTROL_SELECT","default_value":"released","show_when":[{"field":"service_kind","equals":["radarr"]}],"options":[{"value":"announced","label":"Announced"},{"value":"inCinemas","label":"In cinemas"},{"value":"released","label":"Released"}]},
-              {"key":"series_type","label":"Series type","control":"ADMIN_FORM_CONTROL_SELECT","default_value":"standard","show_when":[{"field":"service_kind","equals":["sonarr"]}],"options":[{"value":"standard","label":"Standard"},{"value":"daily","label":"Daily"},{"value":"anime","label":"Anime"}]},
-              {"key":"season_folder","label":"Season folder","control":"ADMIN_FORM_CONTROL_SWITCH","default_value":true,"show_when":[{"field":"service_kind","equals":["sonarr"]}]},
-              {"key":"anime_enabled","label":"Enable anime overrides","control":"ADMIN_FORM_CONTROL_SWITCH"},
-              {"key":"anime_root_folder","label":"Anime root folder","control":"ADMIN_FORM_CONTROL_SELECT","dynamic_options":true,"show_when":[{"field":"anime_enabled","equals":["true"]}]},
-              {"key":"anime_quality_profile_id","label":"Anime quality profile","control":"ADMIN_FORM_CONTROL_SELECT","dynamic_options":true,"show_when":[{"field":"anime_enabled","equals":["true"]}]},
-              {"key":"anime_tags","label":"Anime tags","control":"ADMIN_FORM_CONTROL_MULTI_SELECT","dynamic_options":true,"show_when":[{"field":"anime_enabled","equals":["true"]}]}
+              {
+                "key": "service_kind",
+                "label": "Service",
+                "control": "ADMIN_FORM_CONTROL_SELECT",
+                "required": true,
+                "options": [
+                  {
+                    "value": "radarr",
+                    "label": "Radarr (movies)"
+                  },
+                  {
+                    "value": "sonarr",
+                    "label": "Sonarr (series)"
+                  }
+                ]
+              },
+              {
+                "key": "root_folder",
+                "label": "Root folder",
+                "control": "ADMIN_FORM_CONTROL_SELECT",
+                "dynamic_options": true
+              },
+              {
+                "key": "quality_profile_id",
+                "label": "Quality profile",
+                "control": "ADMIN_FORM_CONTROL_SELECT",
+                "required": true,
+                "dynamic_options": true
+              },
+              {
+                "key": "tags",
+                "label": "Tags",
+                "control": "ADMIN_FORM_CONTROL_MULTI_SELECT",
+                "dynamic_options": true
+              },
+              {
+                "key": "is_default",
+                "label": "Default (HD/1080p)",
+                "control": "ADMIN_FORM_CONTROL_SWITCH",
+                "exclusive_group_field": "service_kind"
+              },
+              {
+                "key": "is_4k",
+                "label": "4K instance",
+                "control": "ADMIN_FORM_CONTROL_SWITCH"
+              },
+              {
+                "key": "is_default_4k",
+                "label": "Default 4K (2160p)",
+                "control": "ADMIN_FORM_CONTROL_SWITCH",
+                "show_when": [
+                  {
+                    "field": "is_4k",
+                    "equals": [
+                      "true"
+                    ]
+                  }
+                ],
+                "exclusive_group_field": "service_kind"
+              },
+              {
+                "key": "search_on_add",
+                "label": "Search on add",
+                "control": "ADMIN_FORM_CONTROL_SWITCH",
+                "default_value": true
+              },
+              {
+                "key": "minimum_availability",
+                "label": "Minimum availability",
+                "control": "ADMIN_FORM_CONTROL_SELECT",
+                "default_value": "released",
+                "show_when": [
+                  {
+                    "field": "service_kind",
+                    "equals": [
+                      "radarr"
+                    ]
+                  }
+                ],
+                "options": [
+                  {
+                    "value": "announced",
+                    "label": "Announced"
+                  },
+                  {
+                    "value": "inCinemas",
+                    "label": "In cinemas"
+                  },
+                  {
+                    "value": "released",
+                    "label": "Released"
+                  }
+                ]
+              },
+              {
+                "key": "series_type",
+                "label": "Series type",
+                "control": "ADMIN_FORM_CONTROL_SELECT",
+                "default_value": "standard",
+                "show_when": [
+                  {
+                    "field": "service_kind",
+                    "equals": [
+                      "sonarr"
+                    ]
+                  }
+                ],
+                "options": [
+                  {
+                    "value": "standard",
+                    "label": "Standard"
+                  },
+                  {
+                    "value": "daily",
+                    "label": "Daily"
+                  },
+                  {
+                    "value": "anime",
+                    "label": "Anime"
+                  }
+                ]
+              },
+              {
+                "key": "season_folder",
+                "label": "Season folder",
+                "control": "ADMIN_FORM_CONTROL_SWITCH",
+                "default_value": true,
+                "show_when": [
+                  {
+                    "field": "service_kind",
+                    "equals": [
+                      "sonarr"
+                    ]
+                  }
+                ]
+              },
+              {
+                "key": "anime_enabled",
+                "label": "Enable anime overrides",
+                "control": "ADMIN_FORM_CONTROL_SWITCH"
+              },
+              {
+                "key": "anime_root_folder",
+                "label": "Anime root folder",
+                "control": "ADMIN_FORM_CONTROL_SELECT",
+                "dynamic_options": true,
+                "show_when": [
+                  {
+                    "field": "anime_enabled",
+                    "equals": [
+                      "true"
+                    ]
+                  }
+                ]
+              },
+              {
+                "key": "anime_quality_profile_id",
+                "label": "Anime quality profile",
+                "control": "ADMIN_FORM_CONTROL_SELECT",
+                "dynamic_options": true,
+                "show_when": [
+                  {
+                    "field": "anime_enabled",
+                    "equals": [
+                      "true"
+                    ]
+                  }
+                ]
+              },
+              {
+                "key": "anime_tags",
+                "label": "Anime tags",
+                "control": "ADMIN_FORM_CONTROL_MULTI_SELECT",
+                "dynamic_options": true,
+                "show_when": [
+                  {
+                    "field": "anime_enabled",
+                    "equals": [
+                      "true"
+                    ]
+                  }
+                ]
+              }
             ],
             "sections": [
-              {"key":"library","title":"Library","collapsible":true,"collapsed_default":true,"field_keys":["service_kind","root_folder","quality_profile_id","tags","is_default","is_4k","is_default_4k","search_on_add","minimum_availability","series_type","season_folder"]},
-              {"key":"anime","title":"Anime overrides","collapsible":false,"collapsed_default":false,"field_keys":["anime_enabled","anime_root_folder","anime_quality_profile_id","anime_tags"]}
+              {
+                "key": "library",
+                "title": "Library",
+                "collapsible": true,
+                "collapsed_default": true,
+                "field_keys": [
+                  "service_kind",
+                  "root_folder",
+                  "quality_profile_id",
+                  "tags",
+                  "is_default",
+                  "is_4k",
+                  "is_default_4k",
+                  "search_on_add",
+                  "minimum_availability",
+                  "series_type",
+                  "season_folder"
+                ]
+              },
+              {
+                "key": "anime",
+                "title": "Anime overrides",
+                "collapsible": false,
+                "collapsed_default": false,
+                "field_keys": [
+                  "anime_enabled",
+                  "anime_root_folder",
+                  "anime_quality_profile_id",
+                  "anime_tags"
+                ]
+              }
             ]
           }
         }
